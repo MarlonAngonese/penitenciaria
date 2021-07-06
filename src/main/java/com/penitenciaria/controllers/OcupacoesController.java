@@ -36,7 +36,7 @@ public class OcupacoesController {
 	public ModelAndView listaOcupacoes() {
 		ModelAndView mv = new ModelAndView("Ocupacoes/indexOcupacoes");
 		
-		Iterable<Ocupacoes> ocupacoes = or.findAll();
+		Iterable<Ocupacoes> ocupacoes = or.findAllByOrderByCodigoDesc();
 		
 		mv.addObject("ocupacoes", ocupacoes);
 		
