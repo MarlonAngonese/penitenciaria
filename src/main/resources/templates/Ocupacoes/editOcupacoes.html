@@ -8,22 +8,22 @@
 	<body>
 	
 	    <form method="POST">
-	        <h3>Nova Ocupação</h3>
+	    	<h3>Editar Ocupação #<strong th:text="${ocupacao.codigo}"></strong></h3>
 	
 	        <hr>
 	    
 	        <span>Nome do Trabalho:</span>
-	        <input type="text" name = "nomeTrabalho" value=""/>
+	        <input type="text" name = "nomeTrabalho" th:value="${ocupacao.nomeTrabalho}"/>
 	    
 	        <hr>
 	    
 	        <span>Carga Horária:</span>
-	        <input type="text" name = "cargaHoraria" value=""/>
+	        <input type="text" name = "cargaHoraria" th:value="${ocupacao.cargaHoraria}"/>
 	    
 	        <hr>
 	    
 	        <span>Setor:</span>
-	        <input type="text" name = "setor" value=""/>
+	        <input type="text" name = "setor" th:value="${ocupacao.setor}"/>
 	    
 	        <hr>
 	    

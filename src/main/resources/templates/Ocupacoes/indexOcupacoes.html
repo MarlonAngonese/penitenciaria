@@ -15,6 +15,7 @@
 				<th>Nome da Ocupação</th>
 				<th>Carga Horária</th>
 				<th>Setor</th>
+				<th>Ações</th>
 			</thead>
 			<tbody>
 				<div th:each="ocupacao, i : ${ocupacoes}">
@@ -24,9 +25,27 @@
 						<td th:text="${ocupacao.nomeTrabalho}"></td>
 						<td th:text="${ocupacao.cargaHoraria}"></td>
 						<td th:text="${ocupacao.setor}"></td>
+						<td>
+							<a th:href="${(#mvc.url('OC#editarOcupacoes').arg(0,ocupacao.codigo)).build()}">Editar</a>
+							<a onclick="confirmarDelete(this);" href="#" th:id="${ocupacao.codigo}">Excluir</a>
+						</td>
 					</tr>
 				</div>
 			</tbody>
 		</table>
 	</body>
+	
+	<script>	
+	
+	function confirmarDelete(obj) {
+		var id = obj.id;
+		
+		var result = confirm("Deseja realmente excluir a ocupação #" + id + "?");
+		
+		if(result) {
+			window.location.href="/ocupacoes/delete/" + id;
+		}
+		
+	}
+	</script>
 </html>
