@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.penitenciaria.models.Ocupacoes;
 import com.penitenciaria.repository.OcupacoesRepository;
@@ -25,5 +26,16 @@ public class OcupacoesController {
 		or.save(ocupacao);
 		
 		return "redirect:/ocupacoes/add";
+	}
+	
+	@RequestMapping(value="/ocupacoes", method=RequestMethod.GET)
+	public ModelAndView listaOcupacoes() {
+		ModelAndView mv = new ModelAndView("Ocupacoes/indexOcupacoes");
+		
+		Iterable<Ocupacoes> ocupacoes = or.findAll();
+		
+		mv.addObject("ocupacoes", ocupacoes);
+		
+		return mv;
 	}
 }

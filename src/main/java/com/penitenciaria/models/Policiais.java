@@ -1,0 +1,46 @@
+package com.penitenciaria.models;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Policiais extends Funcionarios {
+	
+	private static final long serialVersionUID = 1L;
+	
+	String salario;
+	String cargo;
+	int id;
+	String hrInicio;
+	String hrFinal;
+	
+	public String getSalario() {
+		return this.salario;
+	}
+	public void setSalario(String salario) {
+		this.salario = salario;
+	}
+	public String getCargo() {
+		return this.cargo;
+	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+	public int getId() {
+		return this.id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getHrInicio() {
+		return this.hrInicio;
+	}
+	public void setHrInicio(String hrInicio) {
+		this.hrInicio = hrInicio;
+	}
+	public String getHrFinal() {
+		return this.hrFinal;
+	}
+	public void setHrFinal(String hrFinal) {
+		this.hrFinal = hrFinal;
+	}
+}

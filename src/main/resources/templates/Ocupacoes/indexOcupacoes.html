@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Lista de Ocupações</title>
+	</head>
+	<body>
+		<h1>Lista de Ocupações</h1>
+		<h3><a href="/ocupacoes/add">Nova Ocupação</a></h3>
+		
+		<table>
+			<thead>
+				<th>#</th>
+				<th>Id</th>
+				<th>Nome da Ocupação</th>
+				<th>Carga Horária</th>
+				<th>Setor</th>
+			</thead>
+			<tbody>
+				<div th:each="ocupacao, i : ${ocupacoes}">
+					<tr>
+						<td th:text="${i.count}"></td>
+						<td th:text="${ocupacao.codigo}"></td>
+						<td th:text="${ocupacao.nomeTrabalho}"></td>
+						<td th:text="${ocupacao.cargaHoraria}"></td>
+						<td th:text="${ocupacao.setor}"></td>
+					</tr>
+				</div>
+			</tbody>
+		</table>
+	</body>
+</html>
