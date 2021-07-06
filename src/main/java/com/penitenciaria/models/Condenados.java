@@ -28,7 +28,7 @@ public class Condenados implements Serializable {
 	private Ocupacoes ocupacoes;
 	
 	@ManyToOne
-	private Sentencas sentenca;
+	private Sentencas sentencas;
 	
 	private String antecedenteCriminal;
 	
@@ -80,11 +80,11 @@ public class Condenados implements Serializable {
 	public void setOcupacoes(Ocupacoes ocupacoes) {
 		this.ocupacoes = ocupacoes;
 	}
-	public Sentencas getSentenca() {
-		return sentenca;
+	public Sentencas getSentencas() {
+		return sentencas;
 	}
-	public void setSentenca(Sentencas sentenca) {
-		this.sentenca = sentenca;
+	public void setSentencas(Sentencas sentencas) {
+		this.sentencas = sentencas;
 	}
 	public String getAntecedenteCriminal() {
 		return antecedenteCriminal;

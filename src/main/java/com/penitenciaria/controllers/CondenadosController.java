@@ -21,7 +21,6 @@ public class CondenadosController {
 	
 	@RequestMapping(value="/condenados/add", method=RequestMethod.POST)
 	public String form(Condenados condenado) {
-		
 		or.save(condenado);
 		
 		return "redirect:/condenados/add";
