@@ -21,7 +21,6 @@ public class Sentencas implements Serializable {
 	private String anoSaida;
 	private String visitas;
 	private String semiAberto;
-	
 	public long getCodigo() {
 		return codigo;
 	}
@@ -46,17 +45,19 @@ public class Sentencas implements Serializable {
 	public void setAnoSaida(String anoSaida) {
 		this.anoSaida = anoSaida;
 	}
-	public String isVisitas() {
+	public String getVisitas() {
 		return visitas;
 	}
 	public void setVisitas(String visitas) {
 		this.visitas = visitas;
 	}
-	public String isSemiAberto() {
+	public String getSemiAberto() {
 		return semiAberto;
 	}
 	public void setSemiAberto(String semiAberto) {
 		this.semiAberto = semiAberto;
 	}
+	
+	
 
 }
