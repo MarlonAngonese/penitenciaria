@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Lista de Policiais</title>
+	</head>
+	<body>
+		<h1>Lista de Policiais</h1>
+		<h3><a href="/policiais/add">Novo Policial</a></h3>
+		
+		<table>
+			<thead>
+				<th>#</th>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>CPF</th>
+				<th>RG</th>
+				<th>Endereço</th>
+				<th>Salário</th>
+				<th>Cargo</th>
+				<th>Identificador</th>
+				<th>Hora de Início</th>
+				<th>Hora de Saída</th>
+			</thead>
+			<tbody>
+				<div th:each="policial, i : ${policiais}">
+					<tr>
+						<td th:text="${i.count}"></td>
+						<td th:text="${policial.nome}"></td>
+						<td th:text="${policial.cpf}"></td>
+						<td th:text="${policial.rg}"></td>
+						<td th:text="${policial.endereco}"></td>
+						<td th:text="${policial.salario}"></td>
+						<td th:text="${policial.cargo}"></td>
+						<td th:text="${policial.id}"></td>
+						<td th:text="${policial.hrInicio}"></td>
+						<td th:text="${policial.hrFinal}"></td>
+						<td>
+							<a th:href="${(#mvc.url('PC#editarPoliciais').arg(0,policial.codigo)).build()}">Editar</a>
+							<a onclick="confirmarDelete(this);" href="#" th:id="${policial.codigo}">Excluir</a>
+						</td>
+					</tr>
+				</div>
+			</tbody>
+		</table>
+	</body>
+	
+	<script>	
+	
+	function confirmarDelete(obj) {
+		var id = obj.id;
+		
+		var result = confirm("Deseja realmente excluir o policial #" + id + "?");
+		
+		if(result) {
+			window.location.href="/policiais/delete/" + id;
+		}
+		
+	}
+	</script>
+</html>

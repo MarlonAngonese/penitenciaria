@@ -21,28 +21,35 @@ public abstract class Funcionarios implements Serializable {
 	private String rg;
 	private String endereco;
 	
+	public Long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 	public String getNome() {
-		return this.nome;
+		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	public String getCpf() {
-		return this.cpf;
+		return cpf;
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	public String getRg() {
-		return this.rg;
+		return rg;
 	}
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
 	public String getEndereco() {
-		return this.endereco;
+		return endereco;
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+	
 }

@@ -35,64 +35,82 @@ public class Condenados implements Serializable {
 	public long getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 	public String getRg() {
 		return rg;
 	}
+
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
+
 	public String getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
+
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+
 	public String getNomeMae() {
 		return nomeMae;
 	}
+
 	public void setNomeMae(String nomeMae) {
 		this.nomeMae = nomeMae;
 	}
+
 	public Ocupacoes getOcupacoes() {
 		return ocupacoes;
 	}
+
 	public void setOcupacoes(Ocupacoes ocupacoes) {
 		this.ocupacoes = ocupacoes;
 	}
+
 	public Sentencas getSentencas() {
 		return sentencas;
 	}
+
 	public void setSentencas(Sentencas sentencas) {
 		this.sentencas = sentencas;
 	}
+
 	public String getAntecedenteCriminal() {
 		return antecedenteCriminal;
 	}
+
 	public void setAntecedenteCriminal(String antecedenteCriminal) {
 		this.antecedenteCriminal = antecedenteCriminal;
 	}
-	
 	
 	
 

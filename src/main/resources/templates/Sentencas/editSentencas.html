@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+					xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Editar Sentença</title>
+	</head>
+	<body>
+
+    <form method="POST">
+        <h3>Editar Sentença #<strong th:text="${sentenca.codigo}"></strong></h3>
+
+        <hr>
+    
+        <span>Artigo:</span>
+        <input name="artigo" type="text" th:value="${sentenca.artigo}">
+    
+        <hr>
+    
+        <span>Descrição:</span>
+        <input name="descricao" type="text" th:value="${sentenca.descricao}">
+    
+        <hr>
+    
+        <span>Ano de saída:</span>
+        <input name="anoSaida" type="text" th:value="${sentenca.anoSaida}">
+    
+        <hr>
+    
+        <span>Visitas?</span>
+        <input name="visitas" type="text" th:value="${sentenca.visitas}">
+    
+        <hr>
+    
+        <span>Semi-aberto?</span>
+        <input name="semiAberto" type="text" th:value="${sentenca.semiAberto}">
+    
+        <hr>
+    
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Lista de Sentenças</title>
+	</head>
+	<body>
+		<h1>Lista de Sentenças</h1>
+		<h3><a href="/sentencas/add">Nova Sentença</a></h3>
+		
+		<table>
+			<thead>
+				<th>#</th>
+				<th>Id</th>
+				<th>Artigo</th>
+				<th>Descrição</th>
+				<th>Ano de Saída</th>
+				<th>Visitas</th>
+				<th>Semi-Aberto</th>
+				<th>Ações</th>
+			</thead>
+			<tbody>
+				<div th:each="sentenca, i : ${sentencas}">
+					<tr>
+						<td th:text="${i.count}"></td>
+						<td th:text="${sentenca.codigo}"></td>
+						<td th:text="${sentenca.artigo}"></td>
+						<td th:text="${sentenca.descricao}"></td>
+						<td th:text="${sentenca.anoSaida}"></td>
+						<td th:text="${sentenca.visitas}"></td>
+						<td th:text="${sentenca.semiAberto}"></td>
+						<td>
+							<a th:href="${(#mvc.url('SC#editarSentencas').arg(0,sentenca.codigo)).build()}">Editar</a>
+							<a onclick="confirmarDelete(this);" href="#" th:id="${sentenca.codigo}">Excluir</a>
+						</td>
+					</tr>
+				</div>
+			</tbody>
+		</table>
+	</body>
+	
+	<script>	
+	
+	function confirmarDelete(obj) {
+		var id = obj.id;
+		
+		var result = confirm("Deseja realmente excluir a sentença #" + id + "?");
+		
+		if(result) {
+			window.location.href="/sentencas/delete/" + id;
+		}
+		
+	}
+	</script>
+</html>
