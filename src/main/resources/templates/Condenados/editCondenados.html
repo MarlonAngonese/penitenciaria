@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+					xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Editar Condenado</title>
+	</head>
+	<body>
+	
+	    <form method="POST">
+	    	<h3>Editar Condenado #<strong th:text="${condenado.codigo}"></strong></h3>
+	
+	        <hr>
+	    
+	        <span>Nome:</span>
+        <input name="nome" type="text" th:value="${condenado.nome}">
+    
+        <hr>
+    
+        <span>CPF:</span>
+        <input name="cpf" type="text" th:value="${condenado.cpf}">
+    
+        <hr>
+    
+        <span>RG:</span>
+        <input name="rg" type="text" th:value="${condenado.rg}">
+    
+        <hr>
+    
+        <span>Endereço</span>
+        <input name="endereco" type="text" th:value="${condenado.endereco}">
+    
+        <hr>
+    
+        <span>Data-Nascimento</span>
+        <input name="dataNascimento" type="text" th:value="${condenado.dataNascimento}">
+        
+        <hr>
+    
+        <span>Nome Mae</span>
+        <input name="nomeMae" type="text" th:value="${condenado.nomeMae}">
+    
+        <hr>
+  
+        <span>Antecedente Criminal</span>
+        <input name="antecedenteCriminal" type="text" th:value="${condenado.antecedenteCriminal}">
+        
+         <hr>
+    
+        <span>Sentença</span>
+        <input name="sentencas.codigo" type="text" th:value="${condenado.sentencas.codigo}">
+        
+         <hr>
+    
+        <span>Ocupações</span>
+        <input name="ocupacoes.codigo" type="text" th:value="${condenado.ocupacoes.codigo}">
+	  
+	    <hr>
+	    
+	    <button type="submit">Salvar</button>
+	    </form>
+	
+	</body>
+</html>

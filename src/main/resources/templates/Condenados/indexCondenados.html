@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Lista de Condenados</title>
+	</head>
+	<body>
+		<h1>Lista de Condenados</h1>
+		<h3><a href="/condenados/add">Novo Condenado</a></h3>
+		
+		<table>
+			<thead>
+				<th>#</th>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>Antecedente Criminal</th>
+				<th>CPF</th>
+				<th>Data Nascimento</th>
+				<th>Endereço</th>
+				<th>Nome da Mãe</th>
+				<th>RG</th>
+				<th>Ocupações</th>
+				<th>Sentenças</th>
+				<th>Ações</th>
+			</thead>
+			<tbody>
+				<div th:each="condenado, i : ${condenados}">
+					<tr>
+						<td th:text="${i.count}"></td>
+						<td th:text="${condenado.codigo}"></td>
+						<td th:text="${condenado.nome}"></td>
+						<td th:text="${condenado.antecedenteCriminal}"></td>
+						<td th:text="${condenado.cpf}"></td>
+						<td th:text="${condenado.dataNascimento}"></td>
+						<td th:text="${condenado.endereco}"></td>
+						<td th:text="${condenado.nomeMae}"></td>
+						<td th:text="${condenado.rg}"></td>
+						<td th:text="${condenado.ocupacoes.codigo}"></td>
+						<td th:text="${condenado.sentencas.codigo}"></td>
+						
+						
+						<td>
+							<a th:href="${(#mvc.url('CC#editarCondenados').arg(0,condenado.codigo)).build()}">Editar</a>
+							<a onclick="confirmarDelete(this);" href="#" th:id="${condenado.codigo}">Excluir</a>
+						</td>
+					</tr>
+				</div>
+			</tbody>
+		</table>
+	</body>
+	
+	<script>	
+	
+	function confirmarDelete(obj) {
+		var id = obj.id;
+		
+		var result = confirm("Deseja realmente excluir o Condenado #" + id + "?");
+		
+		if(result) {
+			window.location.href="/condenados/delete/" + id;
+		}
+		
+	}
+	</script>
+</html>
