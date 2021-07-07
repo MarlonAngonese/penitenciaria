@@ -17,11 +17,13 @@
 				<th>Ano de Saída</th>
 				<th>Visitas</th>
 				<th>Semi-Aberto</th>
+				<th>Ações</th>
 			</thead>
 			<tbody>
 				<div th:each="sentenca, i : ${sentencas}">
 					<tr>
 						<td th:text="${i.count}"></td>
+						<td th:text="${sentenca.codigo}"></td>
 						<td th:text="${sentenca.artigo}"></td>
 						<td th:text="${sentenca.descricao}"></td>
 						<td th:text="${sentenca.anoSaida}"></td>
