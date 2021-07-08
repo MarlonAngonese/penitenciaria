@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+					xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Editar Cozinheiro</title>
+	</head>
+	<body>
+
+    <form method="POST">
+        <h3>Editar Cozinheiro #<strong th:text="${cozinheiro.codigo}"></strong></h3>
+
+        <hr>
+    
+        <span>Nome:</span>
+        <input name="nome" type="text" th:value="${cozinheiro.nome}">
+    
+        <hr>
+    
+        <span>CPF:</span>
+        <input name="cpf" type="text" th:value="${cozinheiro.cpf}">
+    
+        <hr>
+    
+        <span>RG:</span>
+        <input name="rg" type="text" th:value="${cozinheiro.rg}">
+    
+        <hr>
+    
+        <span>Endereço:</span>
+        <input name="endereco" type="text" th:value="${cozinheiro.endereco}">
+    
+        <hr>
+        
+        <span>Salario:</span>
+        <input name="salario" type="text" th:value="${cozinheiro.salario}">
+    
+        <hr>
+        
+        <span>Cargo:</span>
+        <input name="cargo" type="text" th:value="${cozinheiro.cargo}">
+    
+        <hr>
+    
+		<span>Hora de Início:</span>
+        <input name="hrInicio" type="text" th:value="${cozinheiro.hrInicio}">
+    
+        <hr>
+        
+        <span>Hora de Saída:</span>
+        <input name="hrFinal" type="text" th:value="${cozinheiro.hrFinal}">
+    
+        <hr>
+    
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>
