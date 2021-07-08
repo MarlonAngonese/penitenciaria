@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+					xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Editar Financeiro</title>
+	</head>
+	<body>
+
+    <form method="POST">
+        <h3>Editar Financeiro #<strong th:text="${financeiro.codigo}"></strong></h3>
+
+        <hr>
+    
+        <span>Nome:</span>
+        <input name="nome" type="text" th:value="${financeiro.nome}">
+    
+        <hr>
+    
+        <span>CPF:</span>
+        <input name="cpf" type="text" th:value="${financeiro.cpf}">
+    
+        <hr>
+    
+        <span>RG:</span>
+        <input name="rg" type="text" th:value="${financeiro.rg}">
+    
+        <hr>
+    
+        <span>Endereço:</span>
+        <input name="endereco" type="text" th:value="${financeiro.endereco}">
+    
+        <hr>
+        
+        <span>Salario:</span>
+        <input name="salario" type="text" th:value="${financeiro.salario}">
+    
+        <hr>
+        
+        <span>Cargo:</span>
+        <input name="cargo" type="text" th:value="${financeiro.cargo}">
+    
+        <hr>
+    
+		<span>Hora de Início:</span>
+        <input name="hrInicial" type="text" th:value="${financeiro.hrInicial}">
+    
+        <hr>
+        
+        <span>Hora de Saída:</span>
+        <input name="hrFinal" type="text" th:value="${financeiro.hrFinal}">
+    
+        <hr>
+    
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>

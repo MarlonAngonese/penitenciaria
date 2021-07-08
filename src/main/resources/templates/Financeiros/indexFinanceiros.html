@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Lista de Financeiros</title>
+	</head>
+	<body>
+		<h1>Lista de Financeiros</h1>
+		<h3><a href="/financeiros/add">Novo Financeiro</a></h3>
+		
+		<table>
+			<thead>
+				<th>#</th>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>CPF</th>
+				<th>RG</th>
+				<th>Endereço</th>
+				<th>Salário</th>
+				<th>Cargo</th>
+				<th>Hora de Início</th>
+				<th>Hora de Saída</th>
+			</thead>
+			<tbody>
+				<div th:each="financeiro, i : ${financeiros}">
+					<tr>
+						<td th:text="${i.count}"></td>
+						<td th:text="${financeiro.codigo}"></td>
+						<td th:text="${financeiro.nome}"></td>
+						<td th:text="${financeiro.cpf}"></td>
+						<td th:text="${financeiro.rg}"></td>
+						<td th:text="${financeiro.endereco}"></td>
+						<td th:text="${financeiro.salario}"></td>
+						<td th:text="${financeiro.cargo}"></td>
+						<td th:text="${financeiro.hrInicial}"></td>
+						<td th:text="${financeiro.hrFinal}"></td>
+						<td>
+							<a th:href="${(#mvc.url('FC#editarFinanceiros').arg(0,financeiro.codigo)).build()}">Editar</a>
+							<a onclick="confirmarDelete(this);" href="#" th:id="${financeiro.codigo}">Excluir</a>
+						</td>
+					</tr>
+				</div>
+			</tbody>
+		</table>
+	</body>
+	
+	<script>	
+	
+	function confirmarDelete(obj) {
+		var id = obj.id;
+		
+		var result = confirm("Deseja realmente excluir o financeiro #" + id + "?");
+		
+		if(result) {
+			window.location.href="/financeiros/delete/" + id;
+		}
+		
+	}
+	</script>
+</html>

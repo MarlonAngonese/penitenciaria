@@ -26,6 +26,7 @@
 				<div th:each="policial, i : ${policiais}">
 					<tr>
 						<td th:text="${i.count}"></td>
+						<td th:text="${policial.codigo}"></td>
 						<td th:text="${policial.nome}"></td>
 						<td th:text="${policial.cpf}"></td>
 						<td th:text="${policial.rg}"></td>
