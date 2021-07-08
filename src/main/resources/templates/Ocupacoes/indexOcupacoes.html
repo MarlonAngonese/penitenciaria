@@ -4,37 +4,189 @@
 	<head>
 		<title>Lista de Ocupações</title>
 	</head>
-	<body>
-		<h1>Lista de Ocupações</h1>
-		<h3><a href="/ocupacoes/add">Nova Ocupação</a></h3>
+	<style>
 		
-		<table>
-			<thead>
-				<th>#</th>
-				<th>Id</th>
-				<th>Nome da Ocupação</th>
-				<th>Carga Horária</th>
-				<th>Setor</th>
-				<th>Ações</th>
-			</thead>
-			<tbody>
-				<div th:each="ocupacao, i : ${ocupacoes}">
-					<tr>
-						<td th:text="${i.count}"></td>
-						<td th:text="${ocupacao.codigo}"></td>
-						<td th:text="${ocupacao.nomeTrabalho}"></td>
-						<td th:text="${ocupacao.cargaHoraria}"></td>
-						<td th:text="${ocupacao.setor}"></td>
-						<td>
-							<a th:href="${(#mvc.url('OC#editarOcupacoes').arg(0,ocupacao.codigo)).build()}">Editar</a>
-							<a onclick="confirmarDelete(this);" href="#" th:id="${ocupacao.codigo}">Excluir</a>
-						</td>
-					</tr>
-				</div>
-			</tbody>
-		</table>
-	</body>
+		html, body {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		
+		h1 {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			vertical-align: baseline;
+		}
 	
+		body {
+			  font-family: "Helvetica Neue", Helvetica, Arial;
+			  font-size: 14px;
+			  line-height: 20px;
+			  font-weight: 400;
+			  color: #3b3b3b;
+			  -webkit-font-smoothing: antialiased;
+			  background: #2b2b2b;
+		}
+		
+		@media screen and (max-width: 580px) {
+		  body {
+			    font-size: 16px;
+			    line-height: 22px;
+		  }
+		}
+		
+		.cabecalho {
+			background: #ea6153;
+			color: #ffffff;
+			height: 50px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 20px
+		}
+		
+		.wrapper {
+			  margin: 0 auto;
+			  padding: 40px;
+			  max-width: 800px;
+		}
+		
+		.table {
+			  margin: 0 0 40px 0;
+			  width: 100%;
+			  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+			  display: table;
+			  text-align: center;
+			}
+			@media screen and (max-width: 580px) {
+			  .table {
+			    display: block;
+			  }
+		}
+		
+		.row {
+		  display: table-row;
+		  background: #f6f6f6;
+		}
+		
+		.row:nth-of-type(odd) {
+		  background: #e9e9e9;
+		}
+		
+		.row.header {
+		  font-weight: 900;
+		  color: #ffffff;
+		  background: #ea6153;
+		}
+		
+		@media screen and (max-width: 580px) {
+		  .row {
+		    padding: 14px 0 7px;
+		    display: block;
+		  }
+		  
+		  .row.header {
+		    padding: 0;
+		    height: 6px;
+		  }
+		  
+		  .row.header .cell {
+		    display: none;
+		  }
+		  
+		  .row .cell {
+		    margin-bottom: 10px;
+		  }
+		  
+          .row .cell:before {
+		    margin-bottom: 3px;
+		    content: attr(data-title);
+		    min-width: 98px;
+		    font-size: 10px;
+		    line-height: 10px;
+		    font-weight: bold;
+		    text-transform: uppercase;
+		    color: #969696;
+		    display: block;
+		  }
+		}
+		
+		.cell {
+		  padding: 6px 12px;
+		  display: table-cell;
+		}
+		
+		.cell a {
+			text-decoration: none;
+			color: #3b3b3b;
+			font-weight: bold;
+		}
+		
+		@media screen and (max-width: 580px) {
+		  .cell {
+		    padding: 2px 16px;
+		    display: block;
+		  }
+		}
+		
+	</style>
+	
+	<header class="cabecalho">
+		<h1>Lista de Ocupações</h1>
+	</header>
+	
+	<body>
+		<h3><a href="/ocupacoes/add">Nova Ocupação</a></h3>
+		<div class="wrapper">
+			<div class="table">
+				<div class="row header">
+				    <div class="cell">
+				     	#
+				    </div>
+				    <div class="cell">
+				    	 Id
+			        </div>
+				    <div class="cell">
+				    	Nome da Ocupação
+				    </div>
+				    <div class="cell">
+				    	Carga Horária
+				    </div>
+					<div class="cell">
+				    	Setor
+				    </div>
+					<div class="cell">
+				    	Ações
+				    </div>
+		    	</div>
+				<div class="row" th:each="ocupacao, i: ${ocupacoes}">
+					<div class="cell" data-title="#">
+						<span th:text="${i.count}"></span>
+					</div>
+					<div class="cell" data-title="Id">
+						<span th:text="${ocupacao.codigo}"></span>
+					</div>
+					<div class="cell" data-title="Nome da Ocupacao">
+						<span th:text="${ocupacao.nomeTrabalho}"></span>
+					</div>
+					<div class="cell" data-title="Carga Horaria">
+						<span th:text="${ocupacao.cargaHoraria}"></span>
+					</div>
+					<div class="cell" data-title="Setor">
+						<span th:text="${ocupacao.setor}"></span>
+					</div>
+					<div class="cell" data-title="Acoes">
+						<a style="padding-right: 5px;" th:href="${(#mvc.url('OC#editarOcupacoes').arg(0,ocupacao.codigo)).build()}">Editar</span>
+						<a onclick="confirmarDelete(this);" href="#" th:id="${ocupacao.codigo}">Excluir</a>
+					</div>
+			</div>
+			</div>
+			</div>
+	</body>
 	<script>	
 	
 	function confirmarDelete(obj) {
@@ -47,5 +199,5 @@
 		}
 		
 	}
-	</script>
+	</script>=
 </html>
