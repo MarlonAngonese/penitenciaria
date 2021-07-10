@@ -1,34 +1,177 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+<html lang="pt-br" 	xmlns:th="http://www.thymeleaf.org"
 					xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Adicionar Ocupação</title>
+		<title>Cadastro de Ocupação</title>
 	</head>
+	
+	<style>
+
+		* {
+			box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			-webkit-font-smoothing:antialiased;
+			-moz-font-smoothing:antialiased;
+			-o-font-smoothing:antialiased;
+			text-rendering:optimizeLegibility;
+		}
+		
+		html, body {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		
+		h1 {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			vertical-align: baseline;
+		}
+	
+		body {
+			font-family: "Helvetica Neue", Helvetica, Arial;
+			font-size: 14px;
+			line-height: 20px;
+			font-weight: 400;
+			color: #777;
+			background: #2b2b2b;
+			-webkit-font-smoothing: antialiased;
+		}
+		
+		.cabecalho {
+			background: #ea6153;
+			color: #ffffff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 35px;
+		}
+		
+		.container {
+			max-width:400px;
+			width:100%;
+			margin:0 auto;
+			position:relative;
+		}
+		
+		#formulario input[type="text"], #formulario input[type="number"], #formulario button[type="submit"] { 
+			font:400 12px/16px "Open Sans", Helvetica, Arial, sans-serif; 
+		}
+		
+		#formulario {
+			background:#F9F9F9;
+			padding:25px;
+			margin:50px 0;
+		}
+		
+		#formulario h3 {
+			color: #ea6153;
+			display: block;
+			font-size: 30px;
+			font-weight: 400;
+		}
+		
+		#formulario h4 {
+			margin:5px 0 15px;
+			display:block;
+			font-size:13px;
+		}
+		
+		fieldset {
+			border: medium none !important;
+			margin: 0 0 10px;
+			min-width: 100%;
+			padding: 0;
+			width: 100%;
+		}
+		
+		#formulario input[type="text"], #formulario input[type="number"] {
+			width:100%;
+			border:1px solid #CCC;
+			background:#FFF;
+			margin:0 0 5px;
+			padding:10px;
+		}
+		
+		#formulario input[type="text"]:hover, #formulario input[type="number"]:hover{
+			-webkit-transition:border-color 0.3s ease-in-out;
+			-moz-transition:border-color 0.3s ease-in-out;
+			transition:border-color 0.3s ease-in-out;
+			border:1px solid #AAA;
+		}
+		
+		
+		#formulario button[type="submit"] {
+			cursor:pointer;
+			width:100%;
+			border:none;
+			background:#ea6153;
+			color:#FFF;
+			margin:0 0 5px;
+			padding:10px;
+			font-size:15px;
+		}
+		
+		#formulario button[type="submit"]:hover {
+			background: indianred;
+			-webkit-transition:background 0.3s ease-in-out;
+			-moz-transition:background 0.3s ease-in-out;
+			transition:background-color 0.3s ease-in-out;
+		}
+		
+		#formulario button[type="submit"]:active { box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.5); }
+		
+		#formulario input:focus {
+			outline:0;
+			border:1px solid #999;
+		}
+		::-webkit-input-placeholder {
+		 color:#888;
+		}
+		:-moz-placeholder {
+		 color:#888;
+		}
+		::-moz-placeholder {
+		 color:#888;
+		}
+		:-ms-input-placeholder {
+		 color:#888;
+		}
+
+	</style>
+	
+	<header class="cabecalho">
+		<h1>Cadastro de Ocupação</h1>
+	</header>
+	
 	<body>
-	
-	    <form method="POST">
-	        <h3>Nova Ocupação</h3>
-	
-	        <hr>
-	    
-	        <span>Nome do Trabalho:</span>
-	        <input type="text" name = "nomeTrabalho" value=""/>
-	    
-	        <hr>
-	    
-	        <span>Carga Horária:</span>
-	        <input type="text" name = "cargaHoraria" value=""/>
-	    
-	        <hr>
-	    
-	        <span>Setor:</span>
-	        <input type="text" name = "setor" value=""/>
-	    
-	        <hr>
-	    
-	        <button type="submit">Salvar</button>
-	    </form>
-	
+		<div class="container">  
+	  		<form id="formulario" action="" method="POST">
+			    <h3>Ocupações</h3>
+			    <h4>Formulário de registro de Ocupações</h4>
+				
+				<fieldset>
+			      	<input placeholder="Nome do Trabalho" type="text" name="nomeTrabalho" tabindex="1" required autofocus>
+			    </fieldset>
+			    
+				<fieldset>
+			      	<input placeholder="Carga Horária" type="text" name="cargaHoraria" tabindex="2" required>
+			    </fieldset>
+			    
+				<fieldset>
+			      	<input placeholder="Setor" type="text" name="setor" tabindex="3" required>
+			    </fieldset>
+			    
+				<fieldset>
+			      	<button type="submit" id="formulario-submit" data-submit="...Cadastrando">Cadastrar</button>
+			    </fieldset>
+			</form>
+		</div>
 	</body>
 </html>

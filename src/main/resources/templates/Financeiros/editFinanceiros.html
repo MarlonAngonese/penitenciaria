@@ -5,55 +5,201 @@
 		<meta charset="UTF-8"/>
 		<title>Editar Financeiro</title>
 	</head>
+	
+	<style>
+
+		* {
+			box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			-webkit-font-smoothing:antialiased;
+			-moz-font-smoothing:antialiased;
+			-o-font-smoothing:antialiased;
+			text-rendering:optimizeLegibility;
+		}
+		
+		html, body {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		
+		h1 {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			vertical-align: baseline;
+		}
+	
+		body {
+			font-family: "Helvetica Neue", Helvetica, Arial;
+			font-size: 14px;
+			line-height: 20px;
+			font-weight: 400;
+			color: #777;
+			background: #2b2b2b;
+			-webkit-font-smoothing: antialiased;
+		}
+		
+		.cabecalho {
+			background: #ea6153;
+			color: #ffffff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 35px;
+		}
+		
+		.container {
+			max-width:400px;
+			width:100%;
+			margin:0 auto;
+			position:relative;
+		}
+		
+		#formulario input[type="text"], #formulario input[type="number"], #formulario button[type="submit"] { 
+			font:400 12px/16px "Open Sans", Helvetica, Arial, sans-serif; 
+		}
+		
+		#formulario {
+			background:#F9F9F9;
+			padding:25px;
+			margin:50px 0;
+		}
+		
+		#formulario h3 {
+			color: #ea6153;
+			display: block;
+			font-size: 30px;
+			font-weight: 400;
+		}
+		
+		#formulario h4 {
+			margin:5px 0 15px;
+			display:block;
+			font-size:13px;
+		}
+		
+		fieldset {
+			border: medium none !important;
+			margin: 0 0 10px;
+			min-width: 100%;
+			padding: 0;
+			width: 100%;
+		}
+		
+		#formulario input[type="text"], #formulario input[type="number"] {
+			width:100%;
+			border:1px solid #CCC;
+			background:#FFF;
+			margin:0 0 5px;
+			padding:10px;
+		}
+		
+		#formulario input[type="text"]:hover, #formulario input[type="number"]:hover{
+			-webkit-transition:border-color 0.3s ease-in-out;
+			-moz-transition:border-color 0.3s ease-in-out;
+			transition:border-color 0.3s ease-in-out;
+			border:1px solid #AAA;
+		}
+		
+		
+		#formulario button[type="submit"] {
+			cursor:pointer;
+			width:100%;
+			border:none;
+			background:#ea6153;
+			color:#FFF;
+			margin:0 0 5px;
+			padding:10px;
+			font-size:15px;
+		}
+		
+		#formulario button[type="submit"]:hover {
+			background:indianred;
+			-webkit-transition:background 0.3s ease-in-out;
+			-moz-transition:background 0.3s ease-in-out;
+			transition:background-color 0.3s ease-in-out;
+		}
+		
+		#formulario button[type="submit"]:active { box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.5); }
+		
+		#formulario input:focus {
+			outline:0;
+			border:1px solid #999;
+		}
+		::-webkit-input-placeholder {
+		 color:#888;
+		}
+		:-moz-placeholder {
+		 color:#888;
+		}
+		::-moz-placeholder {
+		 color:#888;
+		}
+		:-ms-input-placeholder {
+		 color:#888;
+		}
+
+	</style>
+	
+	<header class="cabecalho">
+		<h1>Editar Financeiro</h1>
+	</header>
+	
 	<body>
-
-    <form method="POST">
-        <h3>Editar Financeiro #<strong th:text="${financeiro.codigo}"></strong></h3>
-
-        <hr>
-    
-        <span>Nome:</span>
-        <input name="nome" type="text" th:value="${financeiro.nome}">
-    
-        <hr>
-    
-        <span>CPF:</span>
-        <input name="cpf" type="text" th:value="${financeiro.cpf}">
-    
-        <hr>
-    
-        <span>RG:</span>
-        <input name="rg" type="text" th:value="${financeiro.rg}">
-    
-        <hr>
-    
-        <span>Endereço:</span>
-        <input name="endereco" type="text" th:value="${financeiro.endereco}">
-    
-        <hr>
-        
-        <span>Salario:</span>
-        <input name="salario" type="text" th:value="${financeiro.salario}">
-    
-        <hr>
-        
-        <span>Cargo:</span>
-        <input name="cargo" type="text" th:value="${financeiro.cargo}">
-    
-        <hr>
-    
-		<span>Hora de Início:</span>
-        <input name="hrInicial" type="text" th:value="${financeiro.hrInicial}">
-    
-        <hr>
-        
-        <span>Hora de Saída:</span>
-        <input name="hrFinal" type="text" th:value="${financeiro.hrFinal}">
-    
-        <hr>
-    
-        <button type="submit">Salvar</button>
-    </form>
-
+	<div class="container">  
+	  		<form id="formulario" action="" method="POST">
+			    <h3>Financeiro</h3>
+			    <h4>Editar Funcionário #<strong th:text="${financeiro.codigo}"></strong></h4>
+				
+				<fieldset>
+					<span>Nome:</span>
+			      	<input type="text" name="nome" th:value="${financeiro.nome}" tabindex="1" required autofocus>
+			    </fieldset>
+			    
+				<fieldset>
+				<span>CPF:</span>
+			      	<input type="text" name="cpf" th:value="${financeiro.cpf}" tabindex="2" required>
+			    </fieldset>
+			    
+				<fieldset>
+					<span>RG:</span>
+			      	<input type="text" name="rg" th:value="${financeiro.rg}" tabindex="3" required>
+			    </fieldset>
+			    
+				<fieldset>
+					<span>Endereço:</span>
+			      	<input type="text" name="endereco" th:value="${financeiro.endereco}" tabindex="4" required>
+			    </fieldset>
+			    
+				<fieldset>
+					<span>Salário:</span>
+			      	<input type="text" name="salario" th:value="${financeiro.salario}" tabindex="5" required>
+			    </fieldset>
+			    
+				<fieldset>
+					<span>Cargo:</span>
+			     	<input type="text" name="cargo" th:value="${financeiro.cargo}" tabindex="6" required>
+			    </fieldset>
+			    
+				<fieldset>
+					<span>Hora de Início:</span>
+			      	<input type="text" name="hrInicio" th:value="${financeiro.hrInicial}" tabindex="7" required>
+			    </fieldset>
+			    
+				<fieldset>
+					<span>Hora de Saída:</span>
+			     	<input type="text" name="hrFinal" th:value="${financeiro.hrFinal}" tabindex="8" required>
+			    </fieldset>
+			    
+				<fieldset>
+			      	<button type="submit" id="formulario-submit" data-submit="...Editando">Editar</button>
+			    </fieldset>
+			</form>
+		</div>
 </body>
 </html>
