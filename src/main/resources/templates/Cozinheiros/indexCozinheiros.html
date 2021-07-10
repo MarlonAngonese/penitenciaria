@@ -4,44 +4,235 @@
 	<head>
 		<title>Lista de Cozinheiros</title>
 	</head>
-	<body>
-		<h1>Lista de Cozinheiros</h1>
-		<h3><a href="/cozinheiros/add">Novo Cozinheiro</a></h3>
+	
+	<style>
+			
+		html, body {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
 		
-		<table>
-			<thead>
-				<th>#</th>
-				<th>Id</th>
-				<th>Nome</th>
-				<th>CPF</th>
-				<th>RG</th>
-				<th>Endereço</th>
-				<th>Salário</th>
-				<th>Cargo</th>
-				<th>Hora de Início</th>
-				<th>Hora de Saída</th>
-			</thead>
-			<tbody>
-				<div th:each="cozinheiro, i : ${cozinheiros}">
-					<tr>
-						<td th:text="${i.count}"></td>
-						<td th:text="${cozinheiro.codigo}"></td>
-						<td th:text="${cozinheiro.nome}"></td>
-						<td th:text="${cozinheiro.cpf}"></td>
-						<td th:text="${cozinheiro.rg}"></td>
-						<td th:text="${cozinheiro.endereco}"></td>
-						<td th:text="${cozinheiro.salario}"></td>
-						<td th:text="${cozinheiro.cargo}"></td>
-						<td th:text="${cozinheiro.hrInicio}"></td>
-						<td th:text="${cozinheiro.hrFinal}"></td>
-						<td>
-							<a th:href="${(#mvc.url('CC#editarCozinheiros').arg(0,cozinheiro.codigo)).build()}">Editar</a>
-							<a onclick="confirmarDelete(this);" href="#" th:id="${cozinheiro.codigo}">Excluir</a>
-						</td>
-					</tr>
+		h1 {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			vertical-align: baseline;
+		}
+	
+		body {
+			  font-family: "Helvetica Neue", Helvetica, Arial;
+			  font-size: 14px;
+			  line-height: 20px;
+			  font-weight: 400;
+			  color: #3b3b3b;
+			  -webkit-font-smoothing: antialiased;
+			  background: #2b2b2b;
+		}
+		
+		@media screen and (max-width: 580px) {
+		  body {
+			    font-size: 16px;
+			    line-height: 22px;
+		  }
+		}
+		
+		.cabecalho {
+			background: #ea6153;
+			color: #ffffff;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 20px
+		}
+		
+		.wrapper {
+			  margin: 0 auto;
+			  padding: 40px;
+			  max-width: 1300px;
+		}
+		
+		.table {
+			  margin: 0 0 40px 0;
+			  width: 100%;
+			  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+			  display: table;
+			  text-align: center;
+			}
+			@media screen and (max-width: 580px) {
+			  .table {
+			    display: block;
+			  }
+		}
+		
+		.row {
+		  display: table-row;
+		  background: #f6f6f6;
+		}
+		
+		.row:nth-of-type(odd) {
+		  background: #e9e9e9;
+		}
+		
+		.row.header {
+		  font-weight: 900;
+		  color: #ffffff;
+		  background: #ea6153;
+		}
+		
+		@media screen and (max-width: 580px) {
+		  .row {
+		    padding: 14px 0 7px;
+		    display: block;
+		  }
+		  
+		  .row.header {
+		    padding: 0;
+		    height: 6px;
+		  }
+		  
+		  .row.header .cell {
+		    display: none;
+		  }
+		  
+		  .row .cell {
+		    margin-bottom: 10px;
+		  }
+		  
+          .row .cell:before {
+		    margin-bottom: 3px;
+		    content: attr(data-title);
+		    min-width: 98px;
+		    font-size: 10px;
+		    line-height: 10px;
+		    font-weight: bold;
+		    text-transform: uppercase;
+		    color: #969696;
+		    display: block;
+		  }
+		}
+		
+		.cell {
+		  padding: 6px 12px;
+		  display: table-cell;
+		}
+		
+		.cell a {
+			text-decoration: none;
+			color: #3b3b3b;
+			font-weight: bold;
+		}
+		
+		@media screen and (max-width: 580px) {
+		  .cell {
+		    padding: 2px 16px;
+		    display: block;
+		  }
+		}
+		
+		.new-line {
+			display: flex;
+		    margin: 0 45%;
+			margin-top: 2%;
+		    border-radius: 2px;
+		    justify-content: center;
+		    text-decoration: none;
+			background-color: white;
+		}
+		
+		.new-line a {
+			text-decoration: none;
+    		color: #3b3b3b;
+    		padding: 10px;
+		}
+		
+	</style>
+	
+	<header class="cabecalho">
+		<h1>Lista de Cozinheiros</h1>
+	</header>
+	
+	<body>
+		<h3 class="new-line"><a href="/cozinheiros/add">Novo Cozinheiro</a></h3>
+		<div class="wrapper">
+			<div class="table">
+				<div class="row header">
+				    <div class="cell">
+				     	#
+				    </div>
+				    <div class="cell">
+				    	 Id
+			        </div>
+					<div class="cell">
+				    	 Nome
+			        </div>
+				    <div class="cell">
+				    	CPF
+				    </div>
+					<div class="cell">
+				    	RG
+				    </div>
+					<div class="cell">
+				    	Endereço
+				    </div>
+					<div class="cell">
+				    	Salário
+				    </div>
+					<div class="cell">
+				    	Cargo
+				    </div>
+					<div class="cell">
+				    	Hora de Início
+				    </div>
+					<div class="cell">
+				    	Hora de Saída
+				    </div>
+					<div class="cell">
+				    	Ações
+				    </div>
+		    	</div>
+				<div class="row" th:each="cozinheiro, i : ${cozinheiros}">
+				<div class="cell" data-title="#">
+						<span th:text="${i.count}"></span>
+					</div>
+					<div class="cell" data-title="Id">
+						<span th:text="${cozinheiro.codigo}"></span>
+					</div>
+					<div class="cell" data-title="Nome">
+						<span th:text="${cozinheiro.nome}"></span>
+					</div>
+					<div class="cell" data-title="CPF">
+						<span th:text="${cozinheiro.cpf}"></span>
+					</div>
+					<div class="cell" data-title="RG">
+						<span th:text="${cozinheiro.rg}"></span>
+					</div>
+					<div class="cell" data-title="Endereco">
+						<span th:text="${cozinheiro.endereco}"></span>
+					</div>
+					<div class="cell" data-title="Salario">
+						<span th:text="${cozinheiro.salario}"></span>
+					</div>
+					<div class="cell" data-title="Cargo">
+						<span th:text="${cozinheiro.cargo}"></span>
+					</div>
+					<div class="cell" data-title="Hora de Inicio">
+						<span th:text="${cozinheiro.hrInicio}"></span>
+					</div>
+					<div class="cell" data-title="Hora de Saida">
+						<span th:text="${cozinheiro.hrFinal}"></span>
+					</div>
+					<div class="cell" data-title="Acoes">
+						<a style="padding-right: 5px;" th:href="${(#mvc.url('CC#editarCozinheiros').arg(0,cozinheiro.codigo)).build()}">Editar</a>
+						<a onclick="confirmarDelete(this);" href="#" th:id="${cozinheiro.codigo}">Excluir</a>
+					</div>
 				</div>
-			</tbody>
-		</table>
+			</div>
+		</div>
 	</body>
 	
 	<script>	

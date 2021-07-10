@@ -2,51 +2,244 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
+		<meta charset="utf-8" />
 		<title>Lista de Condenados</title>
 	</head>
-	<body>
-		<h1>Lista de Condenados</h1>
-		<h3><a href="/condenados/add">Novo Condenado</a></h3>
+	
+	<style>
+			
+		html, body {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
 		
-		<table>
-			<thead>
-				<th>#</th>
-				<th>Id</th>
-				<th>Nome</th>
-				<th>Antecedente Criminal</th>
-				<th>CPF</th>
-				<th>Data Nascimento</th>
-				<th>Endereço</th>
-				<th>Nome da Mãe</th>
-				<th>RG</th>
-				<th>Ocupações</th>
-				<th>Sentenças</th>
-				<th>Ações</th>
-			</thead>
-			<tbody>
-				<div th:each="condenado, i : ${condenados}">
-					<tr>
-						<td th:text="${i.count}"></td>
-						<td th:text="${condenado.codigo}"></td>
-						<td th:text="${condenado.nome}"></td>
-						<td th:text="${condenado.antecedenteCriminal}"></td>
-						<td th:text="${condenado.cpf}"></td>
-						<td th:text="${condenado.dataNascimento}"></td>
-						<td th:text="${condenado.endereco}"></td>
-						<td th:text="${condenado.nomeMae}"></td>
-						<td th:text="${condenado.rg}"></td>
-						<td th:text="${condenado.ocupacoes.codigo}"></td>
-						<td th:text="${condenado.sentencas.codigo}"></td>
-						
-						
-						<td>
-							<a th:href="${(#mvc.url('CC#editarCondenados').arg(0,condenado.codigo)).build()}">Editar</a>
-							<a onclick="confirmarDelete(this);" href="#" th:id="${condenado.codigo}">Excluir</a>
-						</td>
-					</tr>
+		h1 {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			vertical-align: baseline;
+		}
+	
+		body {
+			  font-family: "Helvetica Neue", Helvetica, Arial;
+			  font-size: 14px;
+			  line-height: 20px;
+			  font-weight: 400;
+			  color: #3b3b3b;
+			  -webkit-font-smoothing: antialiased;
+			  background: #2b2b2b;
+		}
+		
+		@media screen and (max-width: 580px) {
+		  body {
+			    font-size: 16px;
+			    line-height: 22px;
+		  }
+		}
+		
+		.cabecalho {
+			background: #ea6153;
+			color: #ffffff;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 20px
+		}
+		
+		.wrapper {
+			  margin: 0 auto;
+			  padding: 40px;
+			  max-width: 1380px;
+		}
+		
+		.table {
+			  margin: 0 0 40px 0;
+			  width: 100%;
+			  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+			  display: table;
+			  text-align: center;
+			}
+			@media screen and (max-width: 580px) {
+			  .table {
+			    display: block;
+			  }
+		}
+		
+		.row {
+		  display: table-row;
+		  background: #f6f6f6;
+		}
+		
+		.row:nth-of-type(odd) {
+		  background: #e9e9e9;
+		}
+		
+		.row.header {
+		  font-weight: 900;
+		  color: #ffffff;
+		  background: #ea6153;
+		}
+		
+		@media screen and (max-width: 580px) {
+		  .row {
+		    padding: 14px 0 7px;
+		    display: block;
+		  }
+		  
+		  .row.header {
+		    padding: 0;
+		    height: 6px;
+		  }
+		  
+		  .row.header .cell {
+		    display: none;
+		  }
+		  
+		  .row .cell {
+		    margin-bottom: 10px;
+		  }
+		  
+          .row .cell:before {
+		    margin-bottom: 3px;
+		    content: attr(data-title);
+		    min-width: 98px;
+		    font-size: 10px;
+		    line-height: 10px;
+		    font-weight: bold;
+		    text-transform: uppercase;
+		    color: #969696;
+		    display: block;
+		  }
+		}
+		
+		.cell {
+		  padding: 6px 12px;
+		  display: table-cell;
+		}
+		
+		.cell a {
+			text-decoration: none;
+			color: #3b3b3b;
+			font-weight: bold;
+		}
+		
+		@media screen and (max-width: 580px) {
+		  .cell {
+		    padding: 2px 16px;
+		    display: block;
+		  }
+		}
+		
+		.new-line {
+			display: flex;
+		    margin: 0 45%;
+			margin-top: 2%;
+		    border-radius: 2px;
+		    justify-content: center;
+		    text-decoration: none;
+			background-color: white;
+		}
+		
+		.new-line a {
+			text-decoration: none;
+    		color: #3b3b3b;
+    		padding: 10px;
+		}
+		
+	</style>
+	
+	<header class="cabecalho">
+		<h1>Lista de Condenados</h1>
+	</header>
+	
+	<body>
+		<h3 class="new-line"><a href="/condenados/add">Novo Condenado</a></h3>
+		<div class="wrapper">
+			<div class="table">
+				<div class="row header">
+				    <div class="cell">
+				     	#
+				    </div>
+				    <div class="cell">
+				    	 Id
+			        </div>
+					<div class="cell">
+				    	 Nome
+			        </div>
+				    <div class="cell">
+				    	Antecedente Criminal
+				    </div>
+				    <div class="cell">
+				    	CPF
+				    </div>
+					<div class="cell">
+				    	Data Nascimento
+				    </div>
+					<div class="cell">
+				    	Endereço
+				    </div>
+					<div class="cell">
+				    	Nome da Mãe
+				    </div>
+					<div class="cell">
+				    	RG
+				    </div>
+					<div class="cell">
+				    	Ocupações
+				    </div>
+					<div class="cell">
+				    	Sentenças
+				    </div>
+					<div class="cell">
+				    	Ações
+				    </div>
+		    	</div>
+				<div class="row" th:each="condenado, i : ${condenados}">
+				<div class="cell" data-title="#">
+						<span th:text="${i.count}"></span>
+					</div>
+					<div class="cell" data-title="Id">
+						<span th:text="${condenado.codigo}"></span>
+					</div>
+					<div class="cell" data-title="Nome">
+						<span th:text="${condenado.nome}"></span>
+					</div>
+					<div class="cell" data-title="Antecedente Criminal">
+						<span th:text="${condenado.antecedenteCriminal}"></span>
+					</div>
+					<div class="cell" data-title="CPF">
+						<span th:text="${condenado.cpf}"></span>
+					</div>
+					<div class="cell" data-title="Data de Nascimento">
+						<span th:text="${condenado.dataNascimento}"></span>
+					</div>
+					<div class="cell" data-title="Endereco">
+						<span th:text="${condenado.endereco}"></span>
+					</div>
+					<div class="cell" data-title="Nome da Mae">
+						<span th:text="${condenado.nomeMae}"></span>
+					</div>
+					<div class="cell" data-title="RG">
+						<span th:text="${condenado.rg}"></span>
+					</div>
+					<div class="cell" data-title="Ocupacoes">
+						<span th:text="${condenado.ocupacoes.codigo}"></span>
+					</div>
+					<div class="cell" data-title="Sentencas">
+						<span th:text="${condenado.sentencas.codigo}"></span>
+					</div>
+					<div class="cell" data-title="Acoes">
+						<a style="padding-right: 5px; "th:href="${(#mvc.url('CC#editarCondenados').arg(0,condenado.codigo)).build()}">Editar</a>
+						<a onclick="confirmarDelete(this);" href="#" th:id="${condenado.codigo}">Excluir</a>
+					</div>
 				</div>
-			</tbody>
-		</table>
+			</div>
+		</div>
 	</body>
 	
 	<script>	

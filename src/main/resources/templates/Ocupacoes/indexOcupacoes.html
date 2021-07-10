@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
+		<meta charset="utf-8" />
 		<title>Lista de Ocupações</title>
 	</head>
 	<style>
@@ -44,7 +45,7 @@
 			color: #ffffff;
 			height: 50px;
 			display: flex;
-			justify-content: space-between;
+			justify-content: center;
 			align-items: center;
 			padding: 20px
 		}
@@ -133,6 +134,22 @@
 		  }
 		}
 		
+		.new-line {
+			display: flex;
+		    margin: 0 45%;
+			margin-top: 2%;
+		    border-radius: 2px;
+		    justify-content: center;
+		    text-decoration: none;
+			background-color: white;
+		}
+		
+		.new-line a {
+			text-decoration: none;
+    		color: #3b3b3b;
+    		padding: 10px;
+		}
+		
 	</style>
 	
 	<header class="cabecalho">
@@ -140,7 +157,7 @@
 	</header>
 	
 	<body>
-		<h3><a href="/ocupacoes/add">Nova Ocupação</a></h3>
+		<h3 class="new-line"><a href="/ocupacoes/add">Nova Ocupação</a></h3>
 		<div class="wrapper">
 			<div class="table">
 				<div class="row header">
